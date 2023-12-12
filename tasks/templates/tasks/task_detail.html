@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ task.title }}
+{% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'tasks/app.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="button">
+            <a class="create-task" href="{% url 'task_edit' task.id %}">Edit Task</a>
+            <a class="delete-task" href="{% url 'task_delete' task.id %}">Delete Task</a>
+        </div>
+        <div class="details">
+            <h2>{{ task.title }}</h2>
+            <p>{{ task.description }}</p>
+            <p>{{ task.created_at }}</p>
+            <p>Completed: {% if task.completed %}Yes{% else %}No{% endif %}</p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Taks List | Django CRUD
+{% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'tasks/app.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Tasks:</h1>
+        <a class="create-task-btn" href="{% url 'task_create' %}">Create a Task</a>
+        <div class="task">
+            <table>
+                <tr>
+                    <th>Task</th>
+                    <th>Status</th>
+                </tr>
+                {% for task in page_obj %}
+                    <tr>
+                    <td><a class="task-title" href="{% url 'task_detail' task.id %}">{{ task.title }}</a></td>
+                    <td>{% if task.completed %}<span class="done">Done</span>{% else %}<span class="notdone">Not yet</span>{% endif %}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+            
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

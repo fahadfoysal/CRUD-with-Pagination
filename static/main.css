@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: rgba(238, 243, 243, 0.808);
+}
+.header {
+    background-color: rgb(148, 164, 249);
+    border: 1px solid red;
+}
+
+.header h1 {
+    padding: 10px;
+    text-align: center;
+    color: antiquewhite;
+}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Create Task
+{% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'tasks/app.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="t-create">Enter the task here.</h1>
+       <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="btn" id="btn">Submit</button>
+       </form>
+    </div>
+{% endblock %}
